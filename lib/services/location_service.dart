@@ -15,7 +15,7 @@ class LocationService {
   handleLocationServiceSetting() async {
     isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!isLocationServiceEnabled!) {
-      showEnableLocationServiceDialog();
+      await showEnableLocationServiceDialog();
       isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
     }
   }
@@ -30,7 +30,7 @@ class LocationService {
 
   init() async {
     await handleLocationServiceSetting();
-    if (isLocationServiceEnabled!) {
+    if (isLocationServiceEnabled == true) {
       await handlePermisson();
       if (permission == LocationPermission.always ||
           permission == LocationPermission.whileInUse) {
@@ -39,8 +39,8 @@ class LocationService {
     }
   }
 
-  showEnableLocationServiceDialog() {
-    showDialog(
+  showEnableLocationServiceDialog() async {
+    await showDialog(
       context: appContext,
       builder: (context) => AlertDialog.adaptive(
         title: const Text("Turn on your location service"),

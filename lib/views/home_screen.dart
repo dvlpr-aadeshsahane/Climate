@@ -122,14 +122,16 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Column(
           children: [
-            SizedBox(height: 98.h),
+            SizedBox(height: 50.h),
+            Image.network(
+                "https://openweathermap.org/img/wn/${WeatherController().currentData!.weather![0].icon!}@2x.png"),
             Text(
               WeatherController().currentData!.name!,
               style: TextStyle(fontSize: 34.sp, color: Colors.white),
             ),
             SizedBox(
               child: Text(
-                "19℃",
+                "${WeatherController().currentData!.main!.temp!}",
                 style: TextStyle(
                     fontSize: 85.sp,
                     color: Colors.white,
@@ -138,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 12.h),
             Text(
-              "Mostly Clear",
+              WeatherController().currentData!.weather![0].description!,
               style: TextStyle(
                 fontSize: 20.sp,
                 color: AppColors.labelDarkSecondary,
@@ -167,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   SizedBox WeeklyWeather() {
     return SizedBox(
-      height: 146.h,
+      height: 200.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 10,
@@ -215,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   SizedBox hourlyWeather() {
     return SizedBox(
-      height: 146.h,
+      height: 200.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 10,

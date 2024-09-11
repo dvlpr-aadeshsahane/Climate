@@ -21,7 +21,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   changeScreen() {
+
     Future.delayed(Duration(seconds: 2), () async {
+     await  LocationService().init();
       await WeatherController().getHourWeeklyWeather();
       await WeatherController().getCurrentWeatherr();
 
